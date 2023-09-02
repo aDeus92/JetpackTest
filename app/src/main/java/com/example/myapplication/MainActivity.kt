@@ -7,7 +7,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,18 +28,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
             setContent{
-      Box(
-          modifier = Modifier
-              .fillMaxSize(),
-          contentAlignment = Alignment.Center
-      )
-      {
-          CircleBtn( )
-
-
-
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Gray)
+        ){
+            itemsIndexed(
+                listOf(
+                    ItemRowModel(R.drawable.wolf,"Волк"),
+                    ItemRowModel(R.drawable.mops,"Мопс"),
+                    ItemRowModel(R.drawable.panther,"Пантера"),
+                    ItemRowModel(R.drawable.rabbit,"Заяц"),
+                    ItemRowModel(R.drawable.eagle,"Орёл")
+                )
+            ){_,item ->
+            ItemCompose(item = item)
+            }
         }
-
             }
 
     }
